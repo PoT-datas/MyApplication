@@ -29,9 +29,9 @@ val kotlinVersion: String by rootProject.extra
 val jacocoVersion: String by rootProject.extra
 val composeVersion = "1.2.0-beta02"
 
-group = "ir.mahozad.android"
-version = "0.7.0"
-val githubProjectName = "android-pie-chart"
+group = "api.ttt.android"
+version = "1.0.0"
+val githubProjectName = "MyApplication"
 
 
 
@@ -216,7 +216,7 @@ afterEvaluate {
             // GitHub Packages repository
             maven {
                 name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/mahozad/$githubProjectName")
+                url = uri("https://maven.pkg.github.com/PoT-datas/$githubProjectName")
                 credentials {
                     username = project.properties["github.username"] as String? ?: System.getenv("GITHUB_ACTOR") ?: ""
                     password = project.properties["github.token"] as String? ?: System.getenv("GITHUB_TOKEN") ?: ""
@@ -235,13 +235,13 @@ afterEvaluate {
                 // Applies the component for the release build variant (two artifacts: the aar and the sources)
                 from(components["release"])
                 // You can then customize attributes of the publication as shown below
-                groupId = "ir.mahozad.android"
-                artifactId = "pie-chart"
+                groupId = "api.ttt.android"
+                artifactId = "my-application"
                 version = project.version.toString()
                 artifact(sourcesArtifact)
                 artifact(javadocArtifact)
                 pom {
-                    url.set("https://mahozad.ir/$githubProjectName")
+                    url.set("https://ttt.api/$githubProjectName")
                     name.set(githubProjectName)
                     description.set(
                         """
@@ -259,9 +259,9 @@ afterEvaluate {
                     }
                     developers {
                         developer {
-                            id.set("mahozad")
-                            name.set("Mahdi Hosseinzadeh")
-                            url.set("https://mahozad.ir/")
+                            id.set("ttt")
+                            name.set("Olivier Tambo")
+                            url.set("https://ttt.api/")
                             email.set("")
                             roles.set(listOf("Lead Developer"))
                             timezone.set("GMT+4:30")
