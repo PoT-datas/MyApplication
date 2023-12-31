@@ -29,8 +29,8 @@ val kotlinVersion: String by rootProject.extra
 val jacocoVersion: String by rootProject.extra
 val composeVersion = "1.2.0-beta02"
 
-group = ""
-version = "1.0.4"
+group = "github.com/PoT-datas"
+version = "1.0.5"
 val githubProjectName = "MyApplication"
 
 
@@ -209,6 +209,52 @@ tasks.dokkaHtml.configure {
  * Use *publish* task to publish the artifact to the defined repositories.
  */
 afterEvaluate {
+    /**
+     publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = "com.github.PoT-datas"
+                artifactId = "MyApplication"
+                version = "1.0.5"
+
+                from(components["java"])
+            }
+        }
+    }*/
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            create<MavenPublication>("Release") {
+                // Applies the component for the release build variant (two artifacts: the aar and the sources)
+                from(components["release"])
+                // You can then customize attributes of the publication as shown below
+                groupId = "com.github.PoT-datas"
+                artifactId = "MyApplication"
+                version = project.version.toString()
+                artifact(sourcesArtifact)
+                artifact(javadocArtifact)
+                pom {
+                    url.set("https://github.com/PoT-datas/$githubProjectName")
+                    name.set(githubProjectName)
+                    description.set(
+                        """
+                        A library for creating pie charts and donut charts in Android.
+                        The aim of this library is to provide a full-featured chart view and to enable users to customize it to the most extent possible.
+                        Visit the project on GitHub to learn more.
+                        """.trimIndent()
+                    )
+                    inceptionYear.set("2023")
+                }
+            }
+            create<MavenPublication>("Debug") {
+                from(components["debug"])
+                groupId = "com.github.PoT-datas"
+                artifactId = "MyApplication"
+                version = project.version.toString()
+            }
+        }
+    }
+    /**
     publishing {
         repositories {
             /* The Sonatype Maven Central repository is defined in the publish.gradle script */
@@ -235,7 +281,7 @@ afterEvaluate {
                 // Applies the component for the release build variant (two artifacts: the aar and the sources)
                 from(components["release"])
                 // You can then customize attributes of the publication as shown below
-                groupId = ""
+                groupId = "github.com/PoT-datas"
                 artifactId = "MyApplication"
                 version = project.version.toString()
                 artifact(sourcesArtifact)
@@ -250,7 +296,7 @@ afterEvaluate {
                         Visit the project on GitHub to learn more.
                         """.trimIndent()
                     )
-                    inceptionYear.set("2021")
+                    inceptionYear.set("2023")
                     licenses {
                         license {
                             name.set("Apache-2.0 License")
@@ -288,12 +334,12 @@ afterEvaluate {
             }
             create<MavenPublication>("Debug") {
                 from(components["debug"])
-                groupId = ""
+                groupId = "github.com/PoT-datas"
                 artifactId = "MyApplication"
                 version = project.version.toString()
             }
         }
-    }
+    }*/
 }
 
 // Usage: gradlew incrementVersion [-P[mode=major|minor|patch]|[overrideVersion=x]]
