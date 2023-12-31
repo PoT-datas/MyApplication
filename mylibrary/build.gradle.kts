@@ -29,9 +29,9 @@ val kotlinVersion: String by rootProject.extra
 val jacocoVersion: String by rootProject.extra
 val composeVersion = "1.2.0-beta02"
 
-group = "ir.mahozad.android"
-version = "0.7.0"
-val githubProjectName = "android-pie-chart"
+group = ""
+version = "1.0.4"
+val githubProjectName = "MyApplication"
 
 
 
@@ -191,7 +191,7 @@ tasks.dokkaHtml.configure {
 
                 // URL showing where the source code can be accessed through the web browser
                 remoteUrl.set(
-                    uri("https://github.com/mahozad/$githubProjectName/blob/main/${projectDir.name}/src/main/kotlin").toURL()
+                    uri("https://github.com/PoT-datas/$githubProjectName/blob/main/${projectDir.name}/src/main/kotlin").toURL()
                 )
                 // Suffix which is used to append the line number to the URL. Use #L for GitHub
                 remoteLineSuffix.set("#L")
@@ -216,7 +216,7 @@ afterEvaluate {
             // GitHub Packages repository
             maven {
                 name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/mahozad/$githubProjectName")
+                url = uri("https://maven.pkg.github.com/PoT-datas/$githubProjectName")
                 credentials {
                     username = project.properties["github.username"] as String? ?: System.getenv("GITHUB_ACTOR") ?: ""
                     password = project.properties["github.token"] as String? ?: System.getenv("GITHUB_TOKEN") ?: ""
@@ -235,13 +235,13 @@ afterEvaluate {
                 // Applies the component for the release build variant (two artifacts: the aar and the sources)
                 from(components["release"])
                 // You can then customize attributes of the publication as shown below
-                groupId = "ir.mahozad.android"
-                artifactId = "pie-chart"
+                groupId = ""
+                artifactId = "MyApplication"
                 version = project.version.toString()
                 artifact(sourcesArtifact)
                 artifact(javadocArtifact)
                 pom {
-                    url.set("https://mahozad.ir/$githubProjectName")
+                    url.set("https://github.com/PoT-datas/$githubProjectName")
                     name.set(githubProjectName)
                     description.set(
                         """
@@ -272,24 +272,24 @@ afterEvaluate {
                     }
                     scm {
                         tag.set("HEAD")
-                        url.set("https://github.com/mahozad/$githubProjectName")
-                        connection.set("scm:git:github.com/mahozad/$githubProjectName.git")
-                        developerConnection.set("scm:git:ssh://github.com/mahozad/$githubProjectName.git")
+                        url.set("https://github.com/PoT-datas/$githubProjectName")
+                        connection.set("scm:git:github.com/PoT-datas$githubProjectName.git")
+                        developerConnection.set("scm:git:ssh://github.com/PoT-datas/$githubProjectName.git")
                     }
                     issueManagement {
                         system.set("GitHub")
-                        url.set("https://github.com/mahozad/$githubProjectName/issues")
+                        url.set("https://github.com/PoT-datas/$githubProjectName/issues")
                     }
                     ciManagement {
                         system.set("GitHub Actions")
-                        url.set("https://github.com/mahozad/$githubProjectName/actions")
+                        url.set("https://github.com/PoT-datas/$githubProjectName/actions")
                     }
                 }
             }
             create<MavenPublication>("Debug") {
                 from(components["debug"])
-                groupId = "ir.mahozad.android"
-                artifactId = "pie-chart-debug"
+                groupId = ""
+                artifactId = "MyApplication"
                 version = project.version.toString()
             }
         }
