@@ -29,8 +29,8 @@ val kotlinVersion: String by rootProject.extra
 val jacocoVersion: String by rootProject.extra
 val composeVersion = "1.2.0-beta02"
 
-group = "github.com/PoT-datas"
-version = "1.0.5"
+group = "com.github.PoT-datas"
+version = "1.0"
 val githubProjectName = "MyApplication"
 
 
